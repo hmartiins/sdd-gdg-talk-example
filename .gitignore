@@ -1,0 +1,33 @@
+node_modules/
+dist/
+build/
+coverage/
+
+# Banco local e artefatos do SQLite (nunca versionados: contêm dados pessoais)
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+data/
+
+# Artefatos de teste
+test-results/
+playwright-report/
+blob-report/
+.playwright/
+
+# Ambiente
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+
+# Sistema e editores
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+.vscode/
+.idea/

@@ -1,0 +1,44 @@
+name: verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# FR-017 / SC-007: o CI executa EXATAMENTE `npm run verify`, sem lista própria de etapas.
+# Enquanto for assim, o portão não tem como divergir do que roda na máquina de quem
+# desenvolve — a garantia é por construção, não por disciplina. Acrescentar aqui um passo
+# `npm run lint` ou `npm run test:unit` avulso reintroduz a divergência e reprova
+# `tests/gate/verify-gate.test.ts`.
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      # Instalação reprodutível a partir do lockfile (FR-019, SC-010).
+      - name: Install dependencies
+        run: npm ci
+
+      # Preparação de ambiente, não verificação: o Playwright precisa dos navegadores.
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Verify
+        run: npm run verify
+
+      - name: Upload Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7

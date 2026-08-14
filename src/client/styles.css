@@ -1,0 +1,65 @@
+/*
+ * Mobile-first (Princípio IV): o layout base vale a partir de 320px, e larguras maiores
+ * apenas limitam a medida de leitura. Não há media query reduzindo funcionalidade.
+ */
+
+:root {
+  --text: #1a1a1a;
+  --muted: #4a4a4a;
+  --bg: #ffffff;
+  --accent: #1b4f9c;
+  --focus: #b8500a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #f2f2f2;
+    --muted: #c8c8c8;
+    --bg: #141414;
+    --accent: #8ab4f8;
+    --focus: #ffb066;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 1rem;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+}
+
+main {
+  max-width: 38rem;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 1.5rem;
+  line-height: 1.3;
+}
+
+/* Foco sempre visível: navegação por teclado é requisito, não preferência. */
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+dl div {
+  margin-bottom: 0.75rem;
+}
+
+dt {
+  font-weight: 600;
+}
+
+dd {
+  margin: 0;
+  color: var(--muted);
+}
