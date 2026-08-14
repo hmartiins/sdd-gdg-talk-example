@@ -14,17 +14,17 @@ aqui está a apresentação usada em revisão.
 
 ### `invitation`
 
-| Campo | Propósito | Retenção |
-|---|---|---|
-| `guest_name` | Endereçar o convite e identificar a resposta na lista do organizador | Até `event.retention_until` |
-| `guest_email` | Enviar o link do convite e um comprovante da resposta | Até `event.retention_until` |
-| `token_hash` | Autorizar o acesso ao convite sem exigir conta | Até `event.retention_until` |
+| Campo         | Propósito                                                            | Retenção                    |
+| ------------- | -------------------------------------------------------------------- | --------------------------- |
+| `guest_name`  | Endereçar o convite e identificar a resposta na lista do organizador | Até `event.retention_until` |
+| `guest_email` | Enviar o link do convite e um comprovante da resposta                | Até `event.retention_until` |
+| `token_hash`  | Autorizar o acesso ao convite sem exigir conta                       | Até `event.retention_until` |
 
 ### `rsvp_response` — definida, ainda não implementada
 
-| Campo | Propósito | Retenção |
-|---|---|---|
-| `dietary_notes` | Permitir ao organizador planejar a alimentação | Até `event.retention_until` |
+| Campo                 | Propósito                                        | Retenção                    |
+| --------------------- | ------------------------------------------------ | --------------------------- |
+| `dietary_notes`       | Permitir ao organizador planejar a alimentação   | Até `event.retention_until` |
 | `accessibility_notes` | Permitir ao organizador providenciar acomodações | Até `event.retention_until` |
 
 `event.retention_until` é definido por evento e obrigatoriamente posterior a `starts_at`.
@@ -46,17 +46,17 @@ pessoal.
 
 ## Garantias em vigor
 
-| Garantia | Onde é aplicada | Onde é verificada |
-|---|---|---|
-| Nenhum dado pessoal em log | `src/server/logging/logger.ts` (redação) + proibição de `console.*` | `tests/contract/logging-privacy.contract.test.ts` |
-| Nenhum token em log | Mesma lista de redação; serializador registra a rota, não a URL | Idem |
-| Token não adivinhável | 32 bytes de CSPRNG, base64url | `tests/unit/server/invite-token.test.ts` |
-| Token cru nunca persistido | Apenas SHA-256 vai ao banco | `tests/contract/invitation-repository.contract.test.ts` |
-| Resposta não expõe outros convidados | A rota devolve só o convite do token | `tests/contract/invitations.contract.test.ts` |
-| Resposta não expõe identificadores internos | `additionalProperties: false` nos esquemas de resposta | Idem |
-| Sem cache de resposta com dado pessoal | `Cache-Control: no-store` | Idem |
-| Token inexistente e malformado são indistinguíveis | Ambos produzem o mesmo 404 | Idem |
-| Erros não vazam detalhe interno | Handler de erro genérico | Idem |
+| Garantia                                           | Onde é aplicada                                                     | Onde é verificada                                       |
+| -------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------- |
+| Nenhum dado pessoal em log                         | `src/server/logging/logger.ts` (redação) + proibição de `console.*` | `tests/contract/logging-privacy.contract.test.ts`       |
+| Nenhum token em log                                | Mesma lista de redação; serializador registra a rota, não a URL     | Idem                                                    |
+| Token não adivinhável                              | 32 bytes de CSPRNG, base64url                                       | `tests/unit/server/invite-token.test.ts`                |
+| Token cru nunca persistido                         | Apenas SHA-256 vai ao banco                                         | `tests/contract/invitation-repository.contract.test.ts` |
+| Resposta não expõe outros convidados               | A rota devolve só o convite do token                                | `tests/contract/invitations.contract.test.ts`           |
+| Resposta não expõe identificadores internos        | `additionalProperties: false` nos esquemas de resposta              | Idem                                                    |
+| Sem cache de resposta com dado pessoal             | `Cache-Control: no-store`                                           | Idem                                                    |
+| Token inexistente e malformado são indistinguíveis | Ambos produzem o mesmo 404                                          | Idem                                                    |
+| Erros não vazam detalhe interno                    | Handler de erro genérico                                            | Idem                                                    |
 
 ## Terceiros
 

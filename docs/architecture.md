@@ -27,12 +27,12 @@ fiscalizar não satisfaz o requisito — a constituição diz isso com todas as 
     └───────────────────────────────────────┘
 ```
 
-| Camada | O que mora aqui | Pode importar |
-|---|---|---|
-| `src/domain/` | Regras de RSVP e as *ports* que a persistência implementa | `domain`, `shared` |
-| `src/server/` | Rotas HTTP, esquemas, persistência SQLite, log, tokens | `server`, `domain`, `shared` |
-| `src/client/` | Páginas e componentes React, cliente HTTP | `client`, `shared` |
-| `src/shared/` | Tipos do contrato HTTP | `shared` (nada mais) |
+| Camada        | O que mora aqui                                           | Pode importar                |
+| ------------- | --------------------------------------------------------- | ---------------------------- |
+| `src/domain/` | Regras de RSVP e as _ports_ que a persistência implementa | `domain`, `shared`           |
+| `src/server/` | Rotas HTTP, esquemas, persistência SQLite, log, tokens    | `server`, `domain`, `shared` |
+| `src/client/` | Páginas e componentes React, cliente HTTP                 | `client`, `shared`           |
+| `src/shared/` | Tipos do contrato HTTP                                    | `shared` (nada mais)         |
 
 Proibições explícitas, cada uma com um teste em `tests/architecture/boundaries.test.ts`:
 
@@ -52,28 +52,28 @@ exige.
 
 ## Onde colocar cada coisa
 
-| Estou escrevendo… | Vai em… |
-|---|---|
-| Uma tela ou componente de convidado | `src/client/pages/` ou `src/client/components/` |
-| Uma chamada HTTP a partir do cliente | `src/client/api/` |
-| Uma regra de negócio de RSVP | `src/domain/rsvp/` |
-| Um contrato que a persistência deve cumprir | `src/domain/ports/` |
-| Uma rota HTTP | `src/server/http/` |
-| Um JSON Schema de requisição/resposta | `src/server/http/schemas.ts` |
-| Acesso ao banco | `src/server/persistence/` |
-| Qualquer log | `src/server/logging/logger.ts` (ponto único) |
-| Um tipo compartilhado entre cliente e servidor | `src/shared/contracts/` |
+| Estou escrevendo…                              | Vai em…                                         |
+| ---------------------------------------------- | ----------------------------------------------- |
+| Uma tela ou componente de convidado            | `src/client/pages/` ou `src/client/components/` |
+| Uma chamada HTTP a partir do cliente           | `src/client/api/`                               |
+| Uma regra de negócio de RSVP                   | `src/domain/rsvp/`                              |
+| Um contrato que a persistência deve cumprir    | `src/domain/ports/`                             |
+| Uma rota HTTP                                  | `src/server/http/`                              |
+| Um JSON Schema de requisição/resposta          | `src/server/http/schemas.ts`                    |
+| Acesso ao banco                                | `src/server/persistence/`                       |
+| Qualquer log                                   | `src/server/logging/logger.ts` (ponto único)    |
+| Um tipo compartilhado entre cliente e servidor | `src/shared/contracts/`                         |
 
 ## Testes
 
-| Nível | Onde | Contra o quê | Quando usar |
-|---|---|---|---|
-| Unidade | `tests/unit/` | Funções puras | Toda regra de domínio |
-| Componente | `tests/component/` | React em jsdom | Apresentação isolada |
-| Contrato | `tests/contract/` | Fastify real + SQLite real | Formato HTTP, esquema persistido, ports |
-| Arquitetura | `tests/architecture/` | ESLint programático | Fronteiras entre camadas |
-| E2E | `tests/e2e/` | Navegador + servidor + banco reais | Fluxo de convidado ponta a ponta |
-| Gate | `tests/gate/` | O próprio `npm run verify` | Sob demanda (`npm run test:gate`) |
+| Nível       | Onde                  | Contra o quê                       | Quando usar                             |
+| ----------- | --------------------- | ---------------------------------- | --------------------------------------- |
+| Unidade     | `tests/unit/`         | Funções puras                      | Toda regra de domínio                   |
+| Componente  | `tests/component/`    | React em jsdom                     | Apresentação isolada                    |
+| Contrato    | `tests/contract/`     | Fastify real + SQLite real         | Formato HTTP, esquema persistido, ports |
+| Arquitetura | `tests/architecture/` | ESLint programático                | Fronteiras entre camadas                |
+| E2E         | `tests/e2e/`          | Navegador + servidor + banco reais | Fluxo de convidado ponta a ponta        |
+| Gate        | `tests/gate/`         | O próprio `npm run verify`         | Sob demanda (`npm run test:gate`)       |
 
 O projeto `gate` está **fora** de `npm run verify` de propósito: ele executa o `verify`, e
 incluí-lo criaria recursão infinita.

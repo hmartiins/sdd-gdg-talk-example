@@ -11,10 +11,7 @@ export const MAX_NOTES_LENGTH = 1000;
 export type RsvpStatus = 'attending' | 'not_attending';
 
 export type ResponseRuleCode =
-  | 'party_size_invalid'
-  | 'party_size_exceeded'
-  | 'rsvp_deadline_passed'
-  | 'notes_too_long';
+  'party_size_invalid' | 'party_size_exceeded' | 'rsvp_deadline_passed' | 'notes_too_long';
 
 export class ResponseRuleError extends Error {
   constructor(readonly code: ResponseRuleCode) {

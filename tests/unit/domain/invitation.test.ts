@@ -30,7 +30,9 @@ describe('regras de convite', () => {
     ['acima de 20', 21],
     ['fracionário', 1.5],
   ])('rejeita maxPartySize %s', (_label, maxPartySize) => {
-    expect(() => assertValidInvitation({ ...valid, maxPartySize })).toThrow(InvitationRuleError);
+    expect(() => assertValidInvitation({ ...valid, maxPartySize })).toThrow(
+      InvitationRuleError,
+    );
   });
 
   it.each([1, 20])('aceita maxPartySize no limite (%i)', (maxPartySize) => {

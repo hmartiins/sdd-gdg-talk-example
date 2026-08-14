@@ -27,15 +27,15 @@ describe('regras de resposta ao RSVP', () => {
   });
 
   it('rejeita confirmação com partySize zero', () => {
-    expect(() => assertSubmissionAllowed({ status: 'attending', partySize: 0 }, context)).toThrow(
-      ResponseRuleError,
-    );
+    expect(() =>
+      assertSubmissionAllowed({ status: 'attending', partySize: 0 }, context),
+    ).toThrow(ResponseRuleError);
   });
 
   it('rejeita partySize acima da capacidade do convite', () => {
-    expect(() => assertSubmissionAllowed({ status: 'attending', partySize: 5 }, context)).toThrow(
-      expect.objectContaining({ code: 'party_size_exceeded' }),
-    );
+    expect(() =>
+      assertSubmissionAllowed({ status: 'attending', partySize: 5 }, context),
+    ).toThrow(expect.objectContaining({ code: 'party_size_exceeded' }));
   });
 
   it('aceita partySize exatamente igual à capacidade', () => {
@@ -46,7 +46,10 @@ describe('regras de resposta ao RSVP', () => {
 
   it('rejeita submissão após o prazo', () => {
     expect(() =>
-      assertSubmissionAllowed({ status: 'attending', partySize: 1 }, { ...context, now: after }),
+      assertSubmissionAllowed(
+        { status: 'attending', partySize: 1 },
+        { ...context, now: after },
+      ),
     ).toThrow(expect.objectContaining({ code: 'rsvp_deadline_passed' }));
   });
 
@@ -71,7 +74,11 @@ describe('regras de resposta ao RSVP', () => {
   it('a mensagem de erro não inclui o conteúdo das notas (Princípio III)', () => {
     try {
       assertSubmissionAllowed(
-        { status: 'attending', partySize: 1, dietaryNotes: `alergia-secreta${'x'.repeat(1000)}` },
+        {
+          status: 'attending',
+          partySize: 1,
+          dietaryNotes: `alergia-secreta${'x'.repeat(1000)}`,
+        },
         context,
       );
       expect.unreachable('deveria ter lançado');

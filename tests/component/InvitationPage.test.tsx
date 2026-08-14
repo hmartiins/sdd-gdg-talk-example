@@ -18,7 +18,9 @@ describe('InvitationView', () => {
     render(<InvitationView data={view} />);
 
     expect(screen.getByText(/Ana Ribeiro/)).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: /Casamento de Ana e Bruno/ })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: /Casamento de Ana e Bruno/ }),
+    ).toBeInTheDocument();
   });
 
   it('tem exatamente um heading de nível 1', () => {

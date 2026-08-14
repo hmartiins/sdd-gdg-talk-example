@@ -17,13 +17,13 @@ nvm use          # ou: asdf install
 
 ## Os cinco comandos
 
-| Comando | O que faz |
-|---|---|
-| `npm ci` | Instala as dependências a partir do lockfile (reprodutível) |
-| `npm run dev` | Sobe cliente e servidor com recarregamento automático |
-| `npm test` | Roda unidade, componente, contrato e arquitetura |
-| `npm run verify` | **O portão**: formato, lint, tipos e todos os testes |
-| `npm run test:coverage` | Relatório de cobertura em `coverage/` |
+| Comando                 | O que faz                                                   |
+| ----------------------- | ----------------------------------------------------------- |
+| `npm ci`                | Instala as dependências a partir do lockfile (reprodutível) |
+| `npm run dev`           | Sobe cliente e servidor com recarregamento automático       |
+| `npm test`              | Roda unidade, componente, contrato e arquitetura            |
+| `npm run verify`        | **O portão**: formato, lint, tipos e todos os testes        |
+| `npm run test:coverage` | Relatório de cobertura em `coverage/`                       |
 
 Depois de `npm run dev`, o cliente fica em <http://127.0.0.1:5173> e a API em
 <http://127.0.0.1:3000>. O Vite faz proxy de `/api`, então não há CORS nem URL de API
@@ -94,12 +94,12 @@ Comece por [docs/architecture.md](docs/architecture.md) — ele responde "onde e
 
 ## Documentação
 
-| Documento | Assunto |
-|---|---|
-| [docs/architecture.md](docs/architecture.md) | Camadas, onde colocar cada coisa, regras de UI e do portão |
-| [docs/dependencies.md](docs/dependencies.md) | Cada dependência e por que ela existe |
-| [docs/data-privacy.md](docs/data-privacy.md) | Campos pessoais, propósito e retenção |
-| [.specify/memory/constitution.md](.specify/memory/constitution.md) | Os princípios que tudo isso serve |
+| Documento                                                          | Assunto                                                    |
+| ------------------------------------------------------------------ | ---------------------------------------------------------- |
+| [docs/architecture.md](docs/architecture.md)                       | Camadas, onde colocar cada coisa, regras de UI e do portão |
+| [docs/dependencies.md](docs/dependencies.md)                       | Cada dependência e por que ela existe                      |
+| [docs/data-privacy.md](docs/data-privacy.md)                       | Campos pessoais, propósito e retenção                      |
+| [.specify/memory/constitution.md](.specify/memory/constitution.md) | Os princípios que tudo isso serve                          |
 
 ## Escopo atual
 

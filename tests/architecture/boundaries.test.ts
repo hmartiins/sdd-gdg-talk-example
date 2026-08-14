@@ -84,7 +84,10 @@ describe('direções de dependência entre camadas', () => {
   });
 
   it('reprova console.* dentro de server', async () => {
-    const result = await lintSource('src/server', `export const x = () => console.log('oi');\n`);
+    const result = await lintSource(
+      'src/server',
+      `export const x = () => console.log('oi');\n`,
+    );
 
     expect(errorsFrom(result, 'no-console')).not.toHaveLength(0);
   });

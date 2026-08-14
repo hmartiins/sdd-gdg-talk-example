@@ -95,7 +95,14 @@ export const invitationResponseSchema = {
       response: {
         type: ['object', 'null'],
         additionalProperties: false,
-        required: ['status', 'partySize', 'dietaryNotes', 'accessibilityNotes', 'submittedAt', 'updatedAt'],
+        required: [
+          'status',
+          'partySize',
+          'dietaryNotes',
+          'accessibilityNotes',
+          'submittedAt',
+          'updatedAt',
+        ],
         properties: {
           status: { type: 'string', enum: ['attending', 'not_attending'] },
           partySize: { type: 'integer' },

@@ -65,9 +65,7 @@ describe('runner de migração', () => {
     expect(() => applyMigrations(db, dir)).toThrow(MigrationError);
     expect(tableNames(db)).not.toContain('a');
 
-    const applied = db
-      .prepare<[], { name: string }>('SELECT name FROM schema_migration')
-      .all();
+    const applied = db.prepare<[], { name: string }>('SELECT name FROM schema_migration').all();
     expect(applied).toEqual([]);
   });
 

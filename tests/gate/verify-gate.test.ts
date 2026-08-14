@@ -42,7 +42,9 @@ function withCorruptedCopy(inject: (dir: string) => void, script: string): Attem
       cpSync(join(repoRoot, entry), join(dir, entry), { recursive: true });
     }
     // Reusar node_modules por symlink: instalar de novo levaria minutos por caso.
-    execSync(`ln -s ${JSON.stringify(join(repoRoot, 'node_modules'))} ${JSON.stringify(join(dir, 'node_modules'))}`);
+    execSync(
+      `ln -s ${JSON.stringify(join(repoRoot, 'node_modules'))} ${JSON.stringify(join(dir, 'node_modules'))}`,
+    );
 
     inject(dir);
 

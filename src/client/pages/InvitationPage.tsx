@@ -56,8 +56,8 @@ export function InvitationView({
       <h1>{event.name}</h1>
 
       <p>
-        Olá, <strong>{invitation.guestName}</strong>. Você está convidada ou convidado para
-        este evento.
+        Olá, <strong>{invitation.guestName}</strong>. Você está convidada ou convidado para este
+        evento.
       </p>
 
       <dl>
